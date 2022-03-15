@@ -13,6 +13,20 @@ http_archive(
 
 load("@rules_jvm_external//:defs.bzl", "maven_install")
 
+# First time install
+# maven_install(
+#     artifacts = [
+#         "junit:junit:4.12",
+#         "com.google.guava:guava:28.0-jre",
+#     ],
+#     fetch_sources = True,
+#     repositories = [
+#         "http://uk.maven.org/maven2",
+#         "https://jcenter.bintray.com/",
+#     ],
+# )
+
+# Subsequent, after running `bazel run @maven//:pin`
 maven_install(
     artifacts = [
         "junit:junit:4.12",
@@ -23,4 +37,9 @@ maven_install(
         "http://uk.maven.org/maven2",
         "https://jcenter.bintray.com/",
     ],
+    maven_install_json = "//:maven_install.json",
 )
+
+load("@maven//:defs.bzl", "pinned_maven_install")
+pinned_maven_install()
+# End subsequent
