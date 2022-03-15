@@ -29,7 +29,7 @@ load("@rules_jvm_external//:defs.bzl", "maven_install")
 # Subsequent, after running `bazel run @maven//:pin`
 maven_install(
     artifacts = [
-        "junit:junit:4.12",
+        "junit:junit:4.11",
         "com.google.guava:guava:28.0-jre",
     ],
     fetch_sources = True,
@@ -43,3 +43,5 @@ maven_install(
 load("@maven//:defs.bzl", "pinned_maven_install")
 pinned_maven_install()
 # End subsequent
+
+# update maven_install.json for changes to deps with `bazel run @unpinned_maven//:pin`
